@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}login{% endblock %}
+{% block content %}
+<head>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+    <div class="container">
+        <div class="picture"><img src="{% static 'images/persons.svg' %}" alt="" id="img"></div>
+        <div class="form">
+            <h2 id="login-title">Log In</h2>
+            <h3>Welcome</h3>
+            <p id="login1">Log in to get started</p>
+            <form method="post" action="login_user/">
+                {% csrf_token %}
+               <table>
+                <tr>
+                    <td>
+                        <input type="email" name="email" placeholder="Email Address" class="inp" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" name="password" placeholder="Password" class="inp" required>
+                    </td>
+                </tr>
+               </table>
+                <div class="saved"><div class="remember">
+                    <input type="checkbox" name="remember" value=" remember-me">
+                    <label for="remember">Remember me</label>
+                </div>
+            <a href="/password_reset" id="forgot">Forgot Password</a>
+            </div>
+
+            <button id="btn">Log In</button>
+
+            </form>
+            <div>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+            </div>
+            <div class="or-style">
+                <div class="line"></div>
+                <h4>OR</h4>
+                <div class="line"></div>
+            </div>
+            <p id="login2">Login With</p>
+           <div class="btns">
+            <button class="site"><div class="logos"><img src="{% static 'images/flat-color-icons_google.svg' %}" alt="" style="width: 25px; height:25px; background-color:white"><a href="#"><p id="google">Google</p></a></div></button>
+            <button class="site"><div class="logos"><img src="{% static 'images/github_logo.svg' %}" alt="" style="width: 30px; height:30px; background-color:white"><a href="#"><p id="github">Github</p></a></div></button>
+           </div>
+
+            <p>Don't have an account?  <a href="/signup" id="signup"> Sign up</a></p>
+        </div>
+    </div>
+
+{% endblock %}
